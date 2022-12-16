@@ -1,0 +1,12 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8">
+        <ion-img [src]="urlServerImage + movie.backdrop_path" [alt]="movie.title" *ngIf="movie"></ion-img>
+        <ion-text>{{movie.title}}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
