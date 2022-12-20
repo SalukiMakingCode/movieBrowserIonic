@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import {HeaderPageModule} from "../shared/components/header/header.module";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {HeaderPageModule} from "../shared/components/header/header.module";
         FormsModule,
         ExploreContainerComponentModule,
         Tab2PageRoutingModule,
-        HeaderPageModule
+        HeaderPageModule,
+        SharedModule
     ],
   declarations: [Tab2Page]
 })
