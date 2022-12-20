@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Fiche du film : {{currentMovie.title}}</ion-title>
+    <ion-title *ngIf="currentMovie">Fiche du film : {{currentMovie.title}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="toogleIsOpen()">Close</ion-button>
     </ion-buttons>
@@ -11,7 +11,8 @@
   <ion-grid>
     <ion-row>
       <ion-col size="5">
-        <ion-img src="{{serverImage + currentMovie.poster_path}}" id="#backdrop_path">{{currentMovie.title}}</ion-img>
+        <ion-img src="{{serverImage + currentMovie.poster_path}}" id="#backdrop_path" *ngIf="currentMovie.poster_path">{{currentMovie.title}}</ion-img>
+        <ion-img src="../../../../assets/image/movieNotFound.png" *ngIf="!currentMovie.poster_path"></ion-img>
       </ion-col>
       <ion-col size="7" id="webScreen">
         <ion-row>{{currentMovie.title}}</ion-row>
@@ -34,13 +35,15 @@
         </ion-row>
         <ion-row class="hr"></ion-row>
         <ion-row>Synopsis</ion-row>
-        <ion-row>{{currentMovie.overview}}</ion-row>
+        <ion-row *ngIf="currentMovie.overview">{{currentMovie.overview}}</ion-row>
+        <ion-row *ngIf="!currentMovie.overview">There is no synopsis for this movie</ion-row>
         <ion-row class="hr"></ion-row>
         <ion-row>Related movie</ion-row>
         <ion-row>
           <ion-row class="listCardMovieCarousel">
             <ion-card *ngFor="let item of relatedMovieList" [ngStyle]="{
-            'background-image' : 'url(' + item.poster_path + ')'}" class="relatedMovieCard">
+            'background-image' : 'url(' + checkIfImageExist(item.poster_path) + ')'}
+            " class="relatedMovieCard" (click)="showRelatedMovieDetails(item.id)">
             <ion-card-header>
               <ion-card-title>{{item.original_title}}</ion-card-title>
               <ion-card-subtitle>

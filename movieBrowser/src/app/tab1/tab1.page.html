@@ -10,7 +10,7 @@
              </ion-col>
             <ion-col size="10">
                 <ion-row id="spotlight">Movie Spotlight</ion-row>
-<!--                <ion-row id="movieTitleSpotlight">{{movie.title}}</ion-row>-->
+                <ion-row id="movieTitleSpotlight" *ngIf="movie">{{movie.title}}</ion-row>
             </ion-col>
           </ion-row>
         </ion-grid>

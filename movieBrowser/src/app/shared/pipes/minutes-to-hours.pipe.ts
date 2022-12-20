@@ -14,7 +14,7 @@ export class MinutesToHoursPipe implements PipeTransform {
     let minute = value % 60;
     let hours = Math.floor(value / 60);
 
-    minute === 1 ? textMinute = "minute" : textMinute = "minutes";
+    minute === 1 || minute === 0 ? textMinute = "minute" : textMinute = "minutes";
     hours === 1 ? textHours = "heure" : textHours = "heures";
 
     return `${hours} ${textHours} ${minute} ${textMinute}`;

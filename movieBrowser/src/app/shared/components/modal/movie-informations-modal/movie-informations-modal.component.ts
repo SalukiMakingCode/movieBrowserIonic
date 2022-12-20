@@ -29,7 +29,6 @@ export class MovieInformationsModalComponent implements OnInit {
     this._movieInformation.getMovieInformations().subscribe({
       next: (data: Movie) => {
         this.currentMovie = data;
-        console.log(this.currentMovie);
       }
     })
 
@@ -42,11 +41,24 @@ export class MovieInformationsModalComponent implements OnInit {
         }
       }
     })
+
   }
 
   toogleIsOpen() {
     this._movieInformation.toogleIsOpen();
     this.isModalOpen = this._movieInformation.isOpen;
-    console.log(this._movieInformation.isOpen);
+  }
+
+  showRelatedMovieDetails(idMovie : number) {
+    this._movieInformation.changeMovieIdOnModal(idMovie);
+    this.loadData();
+  }
+
+  checkIfImageExist(path : string) :string {
+    if (path !== environment.imageServerMovieDbUrl + "null") {
+      return path;
+    }
+
+    return "../../../../assets/image/movieNotFound.png";
   }
 }

@@ -14,7 +14,7 @@ export class MovieDetailsService {
   id! : number;
   isOpen : boolean = false;
   isOpenObservable : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isOpen);
-
+  idObservable : BehaviorSubject<number> = new BehaviorSubject<number>(this.id);
 
   constructor(
     private _client : HttpClient,
@@ -29,8 +29,17 @@ export class MovieDetailsService {
     this.id = idMovie;
   }
 
+  changeMovieIdOnModal(idMovie : number) {
+    this.id = idMovie;
+    this.emitIdChange();
+  }
+
   emitIsOpen() {
     this.isOpenObservable.next(this.isOpen);
+  }
+
+  emitIdChange() {
+    this.idObservable.next(this.id);
   }
 
   getRelatedMovieInformations() : Observable<RelatedMovieList> {
