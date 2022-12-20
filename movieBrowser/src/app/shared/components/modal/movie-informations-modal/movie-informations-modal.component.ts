@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MovieDetailsService} from "../../../services/movie-details.service";
-import {Movie} from "../../../models/movie.model";
-import {environment} from "../../../../../environments/environment";
-import {RelatedMovie, RelatedMovieList} from "../../../models/relatedMovie.model";
+import { MovieDetailsService } from "../../../services/movie-details.service";
+import { Movie } from "../../../models/movie.model";
+import { environment } from "../../../../../environments/environment";
+import { RelatedMovie, RelatedMovieList } from "../../../models/relatedMovie.model";
 
 @Component({
   selector: 'app-movie-informations-modal',
@@ -10,13 +10,13 @@ import {RelatedMovie, RelatedMovieList} from "../../../models/relatedMovie.model
   styleUrls: ['./movie-informations-modal.component.scss'],
 })
 export class MovieInformationsModalComponent implements OnInit {
-  currentMovie! : Movie;
-  isModalOpen! : boolean;
-  serverImage! : string;
-  relatedMovieList! : RelatedMovie[];
+  currentMovie!: Movie;
+  isModalOpen!: boolean;
+  serverImage!: string;
+  relatedMovieList!: RelatedMovie[];
 
   constructor(
-    private _movieInformation : MovieDetailsService
+    private _movieInformation: MovieDetailsService
   ) { }
 
   ngOnInit() {
@@ -27,15 +27,19 @@ export class MovieInformationsModalComponent implements OnInit {
 
   loadData() {
     this._movieInformation.getMovieInformations().subscribe({
-      next : (data : Movie)=>{
+      next: (data: Movie) => {
         this.currentMovie = data;
         console.log(this.currentMovie);
       }
     })
 
     this._movieInformation.getRelatedMovieInformations().subscribe({
-      next: (data : RelatedMovieList) => {
+      next: (data: RelatedMovieList) => {
         this.relatedMovieList = data.results;
+        for (let i = 0; i < this.relatedMovieList.length; i++) {
+          this.relatedMovieList[i].poster_path = environment.imageServerMovieDbUrl + this.relatedMovieList[i].poster_path
+
+        }
       }
     })
   }
