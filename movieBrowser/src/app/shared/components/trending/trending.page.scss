@@ -1,0 +1,83 @@
+ion-content {
+  max-height:500px;
+  #trendingTitle {
+    margin-left: 20px;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .listCardMovieCarousel {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    overflow: auto;
+    max-width: 100%;
+    /* width */
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #b3000056;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #b30000;
+    }
+
+    .tredingMovieCard {
+      height: 393px;
+      min-width: 280px;
+      max-width: 280px;
+      background-size: cover;
+
+      ion-card-header {
+        height:393px;
+        ion-card-title {
+          position: absolute;
+          bottom:10px;
+          left:10%;
+          width:80%;
+          height:70px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          background-color: #FFFFFF55;
+          backdrop-filter: blur(5px);
+          border-radius: 20px;
+          color: white;
+        }
+
+        ion-card-subtitle {
+          position: absolute;
+          top:10px;
+          right:10%;
+          width:25%;
+          height:50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          background-color: #FFFFFF55;
+          backdrop-filter: blur(5px);
+          border-radius: 20px;
+          color: white;
+          ion-text{
+            padding-left: 0.5rem;
+            padding-top: 0.2rem;
+          }
+        }
+      }
+    }
+  }
+}

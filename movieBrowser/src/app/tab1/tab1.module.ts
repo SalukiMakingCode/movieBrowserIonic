@@ -7,16 +7,25 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import {HeaderPageModule} from "../shared/components/header/header.module";
+import {TrendingPageModule} from "../shared/components/trending/trending.module";
+import {NowPlayingPageModule} from "../shared/components/now-playing/now-playing.module";
+import {
+  MovieInformationsModalComponent
+} from "../shared/components/modal/movie-informations-modal/movie-informations-modal.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
-    imports: [
-        IonicModule,
-        CommonModule,
-        FormsModule,
-        ExploreContainerComponentModule,
-        Tab1PageRoutingModule,
-        HeaderPageModule
-    ],
-  declarations: [Tab1Page]
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    ExploreContainerComponentModule,
+    Tab1PageRoutingModule,
+    HeaderPageModule,
+    TrendingPageModule,
+    NowPlayingPageModule,
+    SharedModule
+  ],
+  declarations: [Tab1Page, MovieInformationsModalComponent]
 })
 export class Tab1PageModule {}

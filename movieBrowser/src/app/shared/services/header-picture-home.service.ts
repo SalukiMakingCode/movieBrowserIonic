@@ -16,6 +16,6 @@ export class HeaderPictureHomeService {
   ) { }
 
   getOneMovie() : Observable<Movie> {
-    return this._client.get<Movie>(this.url + environment.keyApi)
+    return this._client.get<Movie>(this.url + environment.keyApi);
   }
 }

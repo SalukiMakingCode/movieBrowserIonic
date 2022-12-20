@@ -1,0 +1,25 @@
+<ion-content>
+  <ion-grid>
+    <ion-row id="trendingTitle">Now Playing</ion-row>
+
+    <ion-row *ngIf="nowPlayingList" class="listCardMovieCarousel">
+      <ion-card [ngStyle]="{
+      'background-image' : 'url(' + movie.poster_path + ')'}"
+                *ngFor="let movie of nowPlayingList;" class="tredingMovieCard" (click)="toogleIsOpen(movie.id)">
+        <ion-card-header>
+          <ion-card-title>{{movie.original_title}}</ion-card-title>
+          <ion-card-subtitle>
+            <ion-img src="../../assets/image/star.png"></ion-img>
+            <ion-text>
+              {{movie.vote_average}}
+            </ion-text>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+
+        </ion-card-content>
+      </ion-card>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>
