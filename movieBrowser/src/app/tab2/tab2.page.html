@@ -1,7 +1,53 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+ <ion-grid>
+   <ion-row id="inputContainer">
+     <ion-img src="../../assets/image/search.png"></ion-img>
+     <input [(ngModel)]="inputValue" (input)="changeInputValue()">
+   </ion-row>
+   <ion-row id="menuGenre" *ngIf="!inputValue">
+     <ion-text *ngFor="let genre of currentGenreList" (click)="showMovieByGenre(genre.id)" id="genre{{genre.id}}" class="genreMenu">{{genre.name}}</ion-text>
+   </ion-row>
+
+   <ion-row *ngIf="currentMovieByGenreList && !inputValue" class="displayMovieByGenre">
+     <ion-card *ngFor="let movie of currentMovieByGenreList" [ngStyle]="{
+            'background-image' : 'url(' + checkIfImageExist(movie.poster_path) + ')'}
+            " class="genreMovieCard" (click)="toogleIsOpen(movie.id)">
+       <ion-card-header>
+         <ion-card-title>{{movie.original_title}}</ion-card-title>
+         <ion-card-subtitle>
+           <ion-img src=" ../../assets/image/star.png"></ion-img>
+           <ion-text>
+             {{movie.vote_average}}
+           </ion-text>
+         </ion-card-subtitle>
+       </ion-card-header>
+     </ion-card>
+   </ion-row>
+
+   <ion-row *ngIf="inputValue" class="displayMovieByGenre">
+     <ion-card *ngFor="let movie of currentSearchList" [ngStyle]="{
+            'background-image' : 'url(' + checkIfImageExist(movie.poster_path) + ')'}
+            " class="genreMovieCard" (click)="toogleIsOpen(movie.id)">
+       <ion-card-header>
+         <ion-card-title>{{movie.original_title}}</ion-card-title>
+         <ion-card-subtitle>
+           <ion-img src=" ../../assets/image/star.png"></ion-img>
+           <ion-text>
+             {{movie.vote_average}}
+           </ion-text>
+         </ion-card-subtitle>
+       </ion-card-header>
+     </ion-card>
+   </ion-row>
+
+   <ion-row id="waitingForSearch" >
+     <ion-img src="../assets/image/waitingForSearch.png" *ngIf="!inputValue && !currentMovieByGenreList"></ion-img>
+   </ion-row>
+
+ </ion-grid>
+  <ion-modal [isOpen]="isModalOpen" style="--width:100% !important;--height:100vh !important;">
+    <ng-template>
+      <app-movie-informations-modal></app-movie-informations-modal>
+    </ng-template>
+  </ion-modal>
 </ion-content>

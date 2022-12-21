@@ -26,6 +26,6 @@ import {SharedModule} from "../shared/shared.module";
     NowPlayingPageModule,
     SharedModule
   ],
-  declarations: [Tab1Page, MovieInformationsModalComponent]
+  declarations: [Tab1Page]
 })
 export class Tab1PageModule {}

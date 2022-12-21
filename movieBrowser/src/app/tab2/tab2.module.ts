@@ -8,6 +8,11 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import {HeaderPageModule} from "../shared/components/header/header.module";
 import {SharedModule} from "../shared/shared.module";
+import {HttpClientModule} from "@angular/common/http";
+import {
+  MovieInformationsModalComponent
+} from "../shared/components/modal/movie-informations-modal/movie-informations-modal.component";
+
 
 @NgModule({
     imports: [
@@ -17,7 +22,8 @@ import {SharedModule} from "../shared/shared.module";
         ExploreContainerComponentModule,
         Tab2PageRoutingModule,
         HeaderPageModule,
-        SharedModule
+        SharedModule,
+        HttpClientModule
     ],
   declarations: [Tab2Page]
 })

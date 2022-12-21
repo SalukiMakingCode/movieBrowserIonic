@@ -9,7 +9,7 @@
 <ion-content class="ion-padding" id="bodyModal">
 
   <ion-grid>
-    <ion-row>
+    <ion-row *ngIf="currentMovie">
       <ion-col size="5">
         <ion-img src="{{serverImage + currentMovie.poster_path}}" id="#backdrop_path" *ngIf="currentMovie.poster_path">{{currentMovie.title}}</ion-img>
         <ion-img src="../../../../assets/image/movieNotFound.png" *ngIf="!currentMovie.poster_path"></ion-img>
@@ -30,7 +30,7 @@
         <ion-row>
           <ion-col size="3">{{currentMovie.release_date}}</ion-col>
           <ion-col size="9" style="display: flex">
-            <ion-text *ngFor="let genre of currentMovie.genres" class="genre">{{genre.name}}</ion-text>
+            <ion-text *ngFor="let genre of currentMovie.genres" class="genre" (click)="clickOnGenre(genre.id)">{{genre.name}}</ion-text>
           </ion-col>
         </ion-row>
         <ion-row class="hr"></ion-row>
@@ -40,7 +40,7 @@
         <ion-row class="hr"></ion-row>
         <ion-row>Related movie</ion-row>
         <ion-row>
-          <ion-row class="listCardMovieCarousel">
+          <ion-row class="listCardMovieCarousel" *ngIf="relatedMovieList">
             <ion-card *ngFor="let item of relatedMovieList" [ngStyle]="{
             'background-image' : 'url(' + checkIfImageExist(item.poster_path) + ')'}
             " class="relatedMovieCard" (click)="showRelatedMovieDetails(item.id)">

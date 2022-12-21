@@ -27,19 +27,11 @@ export class MovieDetailsService {
 
   setMovieId(idMovie : number) {
     this.id = idMovie;
+    this.idObservable.next(this.id);
   }
 
   changeMovieIdOnModal(idMovie : number) {
-    this.id = idMovie;
-    this.emitIdChange();
-  }
-
-  emitIsOpen() {
-    this.isOpenObservable.next(this.isOpen);
-  }
-
-  emitIdChange() {
-    this.idObservable.next(this.id);
+    this.setMovieId(idMovie);
   }
 
   getRelatedMovieInformations() : Observable<RelatedMovieList> {
@@ -48,6 +40,13 @@ export class MovieDetailsService {
 
   toogleIsOpen() {
     this.isOpen = !this.isOpen;
-    this.emitIsOpen();
+    this.isOpenObservable.next(this.isOpen);
   }
+
+  navigateToOneGenreListMovie(genreId : number) {
+    //not work
+    this.toogleIsOpen();
+    this._router.navigate(['tabs/tab2']);
+  }
+
 }

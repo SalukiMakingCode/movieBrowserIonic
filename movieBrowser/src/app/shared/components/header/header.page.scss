@@ -1,17 +1,19 @@
 ion-title{
   font-size: 24px;
-  margin-left: 25px;
   margin-top: 32px;
   color: white;
+  @media (min-width:0) {
+    margin: 0 auto;
+    width:80%;
+    text-align: center;
+  }
+  @media (min-width:725px) {
+    margin-left: 25px;
+    text-align: left;
+  }
   a {
     text-decoration: none;
     @media (min-width:0) {
-      font-size: 0.8rem;
-    }
-    @media (min-width:720px) {
-      font-size: 1.2rem;
-    }
-    @media (min-width:1024px) {
       font-size: 1.6rem;
     }
     @media (min-width:1500px) {
@@ -19,7 +21,6 @@ ion-title{
     }
     ion-text {
       color: #f9684e;
-
     }
   }
 }

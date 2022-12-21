@@ -44,6 +44,10 @@ export class MovieInformationsModalComponent implements OnInit {
 
   }
 
+  clickOnGenre(idGenre : number) {
+    // this._movieInformation.navigateToOneGenreListMovie(idGenre);
+  }
+
   toogleIsOpen() {
     this._movieInformation.toogleIsOpen();
     this.isModalOpen = this._movieInformation.isOpen;

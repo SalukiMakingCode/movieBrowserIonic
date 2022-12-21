@@ -26,7 +26,6 @@ export class Tab1Page implements OnInit{
     this._movieDetailsService.isOpenObservable.subscribe({
       next : (data : boolean)=> {
         this.isModalOpen = data;
-        console.log("dataOnLoad" +data);
       }
     })
   }
