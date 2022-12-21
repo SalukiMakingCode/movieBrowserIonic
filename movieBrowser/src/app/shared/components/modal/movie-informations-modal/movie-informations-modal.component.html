@@ -10,10 +10,11 @@
 
   <ion-grid>
     <ion-row *ngIf="currentMovie">
-      <ion-col size="5">
+      <ion-col>
         <ion-img src="{{serverImage + currentMovie.poster_path}}" id="#backdrop_path" *ngIf="currentMovie.poster_path">{{currentMovie.title}}</ion-img>
         <ion-img src="../../../../assets/image/movieNotFound.png" *ngIf="!currentMovie.poster_path"></ion-img>
       </ion-col>
+
       <ion-col size="7" id="webScreen">
         <ion-row>{{currentMovie.title}}</ion-row>
         <ion-row id="timeAndRate">
@@ -53,16 +54,93 @@
                 </ion-text>
               </ion-card-subtitle>
             </ion-card-header>
-            <ion-card-content>
-
-            </ion-card-content>
             </ion-card>
           </ion-row>
         </ion-row>
 
       </ion-col>
       <ion-col size="7" id="mobileScreen">
-        test mobile
+        <ion-row>{{currentMovie.title}}</ion-row>
+        <ion-row id="timeAndRateMobile">
+          <ion-img src='../../assets/image/runtime.png'> </ion-img>
+          <ion-text id="timeTextMobile">{{currentMovie.runtime | minutesToHours}}</ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-img src='../../assets/image/star.png'> </ion-img>&nbsp;
+          <ion-text>{{currentMovie.vote_average | number: '1.0-2'}}</ion-text>
+        </ion-row>
+        <ion-row class="hr"></ion-row>
+        <ion-row>
+          <ion-col class="underline">Release date</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{currentMovie.release_date}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="underline mt10">Genre</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="display: flex">
+            <ion-text *ngFor="let genre of currentMovie.genres" class="genre" (click)="clickOnGenre(genre.id)">{{genre.name}}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row class="hr"></ion-row>
+        <ion-row>Synopsis</ion-row>
+        <ion-row *ngIf="currentMovie.overview">{{currentMovie.overview}}</ion-row>
+        <ion-row *ngIf="!currentMovie.overview">There is no synopsis for this movie</ion-row>
+      </ion-col>
+
+      <ion-col size="12" id="mobileLittleScreen">
+        <ion-row>{{currentMovie.title}}</ion-row>
+        <ion-row id="timeAndRateLittleMobile">
+          <ion-img src='../../assets/image/runtime.png'> </ion-img>
+          <ion-text id="timeTextLittleMobile">{{currentMovie.runtime | minutesToHours}}</ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-img src='../../assets/image/star.png'> </ion-img>&nbsp;
+          <ion-text>{{currentMovie.vote_average | number: '1.0-2'}}</ion-text>
+        </ion-row>
+        <ion-row class="hr"></ion-row>
+        <ion-row>
+          <ion-col class="underline">Release date</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{currentMovie.release_date}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="underline mt10">Genre</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="display: flex">
+            <ion-text *ngFor="let genre of currentMovie.genres" class="genre" (click)="clickOnGenre(genre.id)">{{genre.name}}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row class="hr"></ion-row>
+        <ion-row>Synopsis</ion-row>
+        <ion-row *ngIf="currentMovie.overview">{{currentMovie.overview}}</ion-row>
+        <ion-row *ngIf="!currentMovie.overview">There is no synopsis for this movie</ion-row>
+      </ion-col>
+
+      <ion-col size="12" id="mobileScreenBottom">
+        <ion-row class="hr"></ion-row>
+        <ion-row>Related movie</ion-row>
+        <ion-row>
+          <ion-row class="listCardMovieCarousel" *ngIf="relatedMovieList">
+            <ion-card *ngFor="let item of relatedMovieList" [ngStyle]="{
+            'background-image' : 'url(' + checkIfImageExist(item.poster_path) + ')'}
+            " class="relatedMovieCard" (click)="showRelatedMovieDetails(item.id)">
+              <ion-card-header>
+                <ion-card-title>{{item.original_title}}</ion-card-title>
+                <ion-card-subtitle>
+                  <ion-img src=" ../../assets/image/star.png"></ion-img>
+                  <ion-text>
+                    {{item.vote_average}}
+                  </ion-text>
+                </ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-row>
+        </ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>
